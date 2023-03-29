@@ -15,10 +15,9 @@
 ### 1) 카메라 팔로우
 
 ```
-void LateUpdate()
-    {
-        transform.position = thingToFollow.transform.position + new Vector3 (0, 0, -10);
-    }
+void LateUpdate() {
+    transform.position = thingToFollow.transform.position + new Vector3 (0, 0, -10);
+}
 ```
 
 ### 2) 물품 픽업 & 배달
@@ -26,36 +25,36 @@ void LateUpdate()
 ```
 private void OnTriggerEnter2D(Collider2D other) {
 
-        if (other.tag == "Package" && !hasPackage)
-        {
-            Debug.Log("package picked up");
-            hasPackage = true;
+    if (other.tag == "Package" && !hasPackage)
+    {
+        Debug.Log("package picked up");
+        hasPackage = true;
 
-            spriteRenderer.color = hasPackageColor;
+        spriteRenderer.color = hasPackageColor;
 
-            Destroy(other.gameObject, destroyDelay);
+        Destroy(other.gameObject, destroyDelay);
 
-        } else if (other.tag == "Customer" && hasPackage)
-        {
-            Debug.Log("delivered package");
-            hasPackage = false;
+    } else if (other.tag == "Customer" && hasPackage)
+    {
+        Debug.Log("delivered package");
+        hasPackage = false;
 
-            spriteRenderer.color = noPackageColor;
-        }
-
+        spriteRenderer.color = noPackageColor;
     }
+
+}
 ```
 
 ### 3) 이동 속도 변화
 
 ```
 private void OnCollisionEnter2D(Collision2D other) {
-        moveSpeed = slowSpeed;
-    }
+    moveSpeed = slowSpeed;
+}
 
 private void OnTriggerEnter2D(Collider2D other) {
-        if (other.tag == "Boost") {
-            moveSpeed = boostSpeed;
-        }
+    if (other.tag == "Boost") {
+        moveSpeed = boostSpeed;
     }
+}
 ```
